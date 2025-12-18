@@ -1,0 +1,656 @@
+/* ===== CSS Variables ===== */
+:root {
+    --color-bg: #f5f0e8;
+    --color-bg-light: #faf8f4;
+    --color-primary: #6b8e6b;
+    --color-primary-dark: #5a7a5a;
+    --color-accent: #c9b896;
+    --color-text: #3d3d3d;
+    --color-text-light: #7a7a7a;
+    --color-white: #ffffff;
+
+    --font-script: 'Great Vibes', cursive;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-serif-tc: 'Noto Serif TC', serif;
+
+    --transition: all 0.3s ease;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== Reset & Base ===== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-serif-tc), var(--font-serif), serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ===== Typography ===== */
+.script {
+    font-family: var(--font-script), cursive;
+}
+
+.section-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    text-align: center;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+.section-title.script {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--color-text-light);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+}
+
+/* ===== Buttons ===== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+/* ===== Language Toggle ===== */
+.lang-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--color-white);
+    border: 1px solid var(--color-accent);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.lang-toggle:hover {
+    background: var(--color-bg);
+}
+
+/* ===== Hero Section ===== */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+        url('assets/compression/DSC00009.jpg') center/cover no-repeat;
+    z-index: -2;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(245, 240, 232, 0.7) 0%,
+        rgba(245, 240, 232, 0.85) 50%,
+        rgba(245, 240, 232, 0.95) 100%
+    );
+    z-index: -1;
+}
+
+.hero-content {
+    padding: 2rem;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-text-light);
+    margin-bottom: 1rem;
+}
+
+.hero-title {
+    font-family: var(--font-script), cursive;
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 400;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-date {
+    font-size: 1.5rem;
+    letter-spacing: 0.3em;
+    color: var(--color-text);
+    margin-bottom: 2rem;
+}
+
+/* ===== Countdown ===== */
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.countdown-number {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+    color: var(--color-primary);
+    line-height: 1;
+}
+
+.countdown-label {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.25rem;
+}
+
+/* ===== Scroll Down ===== */
+.scroll-down {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    animation: bounce 2s infinite;
+}
+
+.scroll-down svg {
+    opacity: 0.7;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ===== Invitation Section ===== */
+.invitation {
+    padding: 6rem 0;
+    background: var(--color-bg-light);
+    position: relative;
+}
+
+.invitation .container {
+    position: relative;
+    padding: 4rem 2rem;
+}
+
+.invitation-text {
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--color-text-light);
+    margin-bottom: 3rem;
+}
+
+/* ===== Event Details ===== */
+.event-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.detail-item {
+    text-align: center;
+    padding: 2rem;
+    background: var(--color-white);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.detail-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.detail-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: var(--color-bg);
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+}
+
+.detail-item h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.detail-item p {
+    color: var(--color-text-light);
+    font-size: 1rem;
+}
+
+.venue-name {
+    font-weight: 600;
+    color: var(--color-text) !important;
+    margin-bottom: 0.25rem !important;
+}
+
+.venue-address {
+    font-size: 0.9rem !important;
+}
+
+/* ===== Floral Decorations ===== */
+.floral-decoration {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.top-left {
+    top: 0;
+    left: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(107, 142, 107, 0.3) 0%, transparent 50%);
+}
+
+.top-right {
+    top: 0;
+    right: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(107, 142, 107, 0.3) 0%, transparent 50%);
+}
+
+.bottom-left {
+    bottom: 0;
+    left: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(107, 142, 107, 0.3) 0%, transparent 50%);
+}
+
+.bottom-right {
+    bottom: 0;
+    right: 0;
+    background: radial-gradient(circle at 70% 70%, rgba(107, 142, 107, 0.3) 0%, transparent 50%);
+}
+
+/* ===== Gallery Section ===== */
+.gallery {
+    padding: 6rem 0;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.gallery-item {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.gallery-item:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* ===== Location Section ===== */
+.location {
+    padding: 6rem 0;
+    background: var(--color-bg-light);
+}
+
+.location-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.map-container {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.location-map {
+    width: 100%;
+    height: auto;
+}
+
+.location-info {
+    text-align: center;
+}
+
+.location-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+}
+
+.location-info .address {
+    color: var(--color-text-light);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+/* ===== RSVP Section ===== */
+.rsvp {
+    padding: 6rem 0;
+}
+
+.rsvp-form {
+    max-width: 500px;
+    margin: 0 auto;
+    background: var(--color-white);
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+    background: var(--color-bg-light);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(107, 142, 107, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.rsvp-form .btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+/* ===== Footer ===== */
+.footer {
+    padding: 4rem 0;
+    text-align: center;
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.footer-names {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-date {
+    font-size: 1.2rem;
+    letter-spacing: 0.2em;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+}
+
+.footer-thanks {
+    opacity: 0.8;
+    font-size: 0.95rem;
+}
+
+/* ===== Lightbox ===== */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(0, 0, 0, 0.95);
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-content {
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    background: none;
+    border: none;
+    color: var(--color-white);
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 1rem;
+    opacity: 0.8;
+    transition: var(--transition);
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    opacity: 1;
+}
+
+.lightbox-close {
+    top: 20px;
+    right: 20px;
+    font-size: 2.5rem;
+}
+
+.lightbox-prev {
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.lightbox-next {
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .location-content {
+        grid-template-columns: 1fr;
+    }
+
+    .countdown {
+        gap: 1rem;
+    }
+
+    .countdown-number {
+        font-size: 1.8rem;
+    }
+
+    .event-details {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .rsvp-form {
+        padding: 2rem;
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .section-title.script {
+        font-size: 2.2rem;
+    }
+
+    .countdown-number {
+        font-size: 1.5rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
