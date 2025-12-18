@@ -8,7 +8,86 @@ document.addEventListener('DOMContentLoaded', function() {
     initLightbox();
     initScrollAnimations();
     initSmoothScroll();
+    initScrollButton();
+    initMusic();
 });
+
+// ===== Background Music =====
+function initMusic() {
+    const musicToggle = document.getElementById('musicToggle');
+    const bgMusic = document.getElementById('bgMusic');
+    const iconOn = musicToggle.querySelector('.music-icon-on');
+    const iconOff = musicToggle.querySelector('.music-icon-off');
+
+    let isPlaying = false;
+
+    musicToggle.addEventListener('click', function() {
+        if (isPlaying) {
+            bgMusic.pause();
+            musicToggle.classList.remove('playing');
+            iconOn.style.display = 'none';
+            iconOff.style.display = 'block';
+        } else {
+            bgMusic.play().catch(function(error) {
+                console.log('Audio play failed:', error);
+            });
+            musicToggle.classList.add('playing');
+            iconOn.style.display = 'block';
+            iconOff.style.display = 'none';
+        }
+        isPlaying = !isPlaying;
+    });
+
+    // Set initial volume
+    bgMusic.volume = 0.5;
+}
+
+// ===== Scroll Button =====
+function initScrollButton() {
+    const scrollBtn = document.getElementById('scrollBtn');
+
+    // Show/hide button and toggle direction based on scroll position
+    function updateScrollButton() {
+        const scrollTop = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrolledToBottom = scrollTop + windowHeight >= documentHeight - 100;
+
+        // Show button after scrolling 200px
+        if (scrollTop > 200) {
+            scrollBtn.classList.add('visible');
+        } else {
+            scrollBtn.classList.remove('visible');
+        }
+
+        // Toggle between up and down arrow
+        if (scrolledToBottom) {
+            scrollBtn.classList.add('at-bottom');
+        } else {
+            scrollBtn.classList.remove('at-bottom');
+        }
+    }
+
+    // Scroll to top or bottom on click
+    scrollBtn.addEventListener('click', function() {
+        if (scrollBtn.classList.contains('at-bottom')) {
+            // Scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        } else {
+            // Scroll to bottom
+            window.scrollTo({
+                top: document.documentElement.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
+    });
+
+    window.addEventListener('scroll', updateScrollButton);
+    updateScrollButton(); // Initial check
+}
 
 // ===== Navigation Bar =====
 function initNavbar() {

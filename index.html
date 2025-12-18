@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MingRay & ShihYu Wedding | 徐明睿 & 陸詩羽 婚禮</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Noto+Serif+TC:wght@400;600;700&family=LXGW+WenKai+TC:wght@400;700&display=swap" rel="stylesheet">
@@ -45,6 +47,11 @@
             <span class="lang-en" style="display:none;">中文</span>
         </button>
     </nav>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="assets/music/background.mp3" type="audio/mpeg">
+    </audio>
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
@@ -292,6 +299,31 @@
             <img src="" alt="" id="lightboxImg">
         </div>
     </div>
+
+    <!-- Music Button (Floating) -->
+    <button class="music-toggle" id="musicToggle" aria-label="Toggle Music">
+        <svg class="music-icon-on" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/>
+            <circle cx="18" cy="16" r="3"/>
+        </svg>
+        <svg class="music-icon-off" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/>
+            <circle cx="18" cy="16" r="3"/>
+            <line x1="1" y1="1" x2="23" y2="23" stroke-width="2"/>
+        </svg>
+    </button>
+
+    <!-- Scroll Button -->
+    <button class="scroll-btn" id="scrollBtn" aria-label="Scroll">
+        <svg class="scroll-btn-up" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+        <svg class="scroll-btn-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+        </svg>
+    </button>
 
     <script src="script.js"></script>
 </body>
