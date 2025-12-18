@@ -6,14 +6,14 @@ console.log(`
 %c徐明睿 & 陸詩羽
 %c2026.02.08
 
-%c    ♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
+%c    ♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
     ♥                         ♥
     ♥   Thanks for visiting   ♥
     ♥     our wedding site!   ♥
     ♥                         ♥
-    ♥   感謝您參加我們的婚禮   ♥
+    ♥   感謝您參加我們的婚禮    ♥
     ♥                         ♥
-    ♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
+    ♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
 
 %c👀 Hey developer! You found the secret!
 %c🎉 We hope you enjoy our special day!
@@ -21,17 +21,17 @@ console.log(`
 
 %c— Built with ❤️ by MingRay —
 `,
-'color: #6b8e6b; font-size: 24px; font-weight: bold;',
-'color: #6b8e6b; font-size: 18px;',
-'color: #888; font-size: 14px;',
-'color: #d4a5a5; font-size: 12px;',
-'color: #ff6b6b; font-size: 14px; font-weight: bold;',
-'color: #4ecdc4; font-size: 14px;',
-'color: #ff6b6b; font-size: 14px;',
-'color: #888; font-size: 11px; font-style: italic;'
+    'color: #6b8e6b; font-size: 24px; font-weight: bold;',
+    'color: #6b8e6b; font-size: 18px;',
+    'color: #888; font-size: 14px;',
+    'color: #d4a5a5; font-size: 12px;',
+    'color: #ff6b6b; font-size: 14px; font-weight: bold;',
+    'color: #4ecdc4; font-size: 14px;',
+    'color: #ff6b6b; font-size: 14px;',
+    'color: #888; font-size: 11px; font-style: italic;'
 );
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Initialize all features
     initNavbar();
     initCountdown();
@@ -53,14 +53,14 @@ function initMusic() {
 
     let isPlaying = false;
 
-    musicToggle.addEventListener('click', function() {
+    musicToggle.addEventListener('click', function () {
         if (isPlaying) {
             bgMusic.pause();
             musicToggle.classList.remove('playing');
             iconOn.style.display = 'none';
             iconOff.style.display = 'block';
         } else {
-            bgMusic.play().catch(function(error) {
+            bgMusic.play().catch(function (error) {
                 console.log('Audio play failed:', error);
             });
             musicToggle.classList.add('playing');
@@ -83,7 +83,7 @@ function initFooterEasterEgg() {
 
     if (footer) {
         footer.style.cursor = 'pointer';
-        footer.addEventListener('click', function(e) {
+        footer.addEventListener('click', function (e) {
             e.stopPropagation();
             footerClickCount++;
 
@@ -132,7 +132,7 @@ function initScrollButton() {
     }
 
     // Scroll to top or bottom on click
-    scrollBtn.addEventListener('click', function() {
+    scrollBtn.addEventListener('click', function () {
         if (scrollBtn.classList.contains('at-bottom')) {
             // Scroll to top
             window.scrollTo({
@@ -159,21 +159,21 @@ function initNavbar() {
     const navMenu = document.getElementById('navMenu');
 
     // Mobile menu toggle
-    navToggle.addEventListener('click', function() {
+    navToggle.addEventListener('click', function () {
         navToggle.classList.toggle('active');
         navMenu.classList.toggle('active');
     });
 
     // Close menu when clicking a link
     navMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function () {
             navToggle.classList.remove('active');
             navMenu.classList.remove('active');
         });
     });
 
     // Navbar scroll effect
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
         } else {
@@ -225,7 +225,7 @@ function initLanguageToggle() {
     let currentLang = localStorage.getItem('wedding-lang') || 'zh';
     setLanguage(currentLang);
 
-    toggle.addEventListener('click', function() {
+    toggle.addEventListener('click', function () {
         currentLang = currentLang === 'zh' ? 'en' : 'zh';
         setLanguage(currentLang);
         localStorage.setItem('wedding-lang', currentLang);
@@ -269,7 +269,7 @@ function initLightbox() {
 
     // Open lightbox when clicking gallery item
     galleryItems.forEach((item, index) => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
             currentIndex = index;
             openLightbox();
         });
@@ -316,17 +316,17 @@ function initLightbox() {
     nextBtn.addEventListener('click', showNext);
 
     // Close on background click
-    lightbox.addEventListener('click', function(e) {
+    lightbox.addEventListener('click', function (e) {
         if (e.target === lightbox) {
             closeLightbox();
         }
     });
 
     // Keyboard navigation
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
         if (!lightbox.classList.contains('active')) return;
 
-        switch(e.key) {
+        switch (e.key) {
             case 'Escape':
                 closeLightbox();
                 break;
@@ -363,7 +363,7 @@ function initScrollAnimations() {
 // ===== Smooth Scroll =====
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
