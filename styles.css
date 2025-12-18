@@ -12,6 +12,7 @@
     --font-script: 'Great Vibes', cursive;
     --font-serif: 'Cormorant Garamond', serif;
     --font-serif-tc: 'Noto Serif TC', serif;
+    --font-elegant-tc: 'LXGW WenKai TC', serif;
 
     --transition: all 0.3s ease;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -30,11 +31,23 @@ html {
 }
 
 body {
-    font-family: var(--font-serif-tc), var(--font-serif), serif;
+    font-family: var(--font-elegant-tc), var(--font-serif-tc), var(--font-serif), serif;
     background-color: var(--color-bg);
     color: var(--color-text);
-    line-height: 1.6;
+    line-height: 1.8;
     overflow-x: hidden;
+}
+
+/* Chinese Typography */
+.lang-zh {
+    font-family: var(--font-elegant-tc), var(--font-serif-tc), serif;
+}
+
+h1 .lang-zh,
+h2 .lang-zh,
+.hero-title .lang-zh {
+    font-family: var(--font-elegant-tc), var(--font-serif-tc), serif;
+    font-weight: 700;
 }
 
 .container {
@@ -69,6 +82,13 @@ a {
 
 .section-title.script {
     font-size: clamp(2.5rem, 6vw, 4rem);
+}
+
+.section-title .lang-zh {
+    font-family: var(--font-elegant-tc), var(--font-serif-tc), serif;
+    font-size: 1.1em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
 }
 
 .section-subtitle {
@@ -176,6 +196,11 @@ a {
     color: var(--color-primary);
     margin-bottom: 1rem;
     line-height: 1.2;
+}
+
+.hero-title .lang-zh {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    letter-spacing: 0.15em;
 }
 
 .hero-date {
