@@ -153,7 +153,7 @@ function initLightbox() {
 
 // ===== Scroll Animations =====
 function initScrollAnimations() {
-    const elements = document.querySelectorAll('.detail-item, .gallery-item, .location-content, .rsvp-form');
+    const elements = document.querySelectorAll('.detail-item, .gallery-item, .location-content, .rsvp-content');
 
     elements.forEach(el => el.classList.add('fade-in'));
 
@@ -184,36 +184,5 @@ function initSmoothScroll() {
                 });
             }
         });
-    });
-}
-
-// ===== RSVP Form Handling =====
-const rsvpForm = document.getElementById('rsvpForm');
-if (rsvpForm) {
-    rsvpForm.addEventListener('submit', function(e) {
-        // Form will be handled by Formspree
-        // Add custom validation or handling here if needed
-
-        const attendance = document.getElementById('attendance').value;
-        const guests = document.getElementById('guests');
-
-        // Disable guests input if not attending
-        if (attendance === 'no') {
-            guests.value = 0;
-        }
-    });
-
-    // Toggle guests field based on attendance
-    const attendanceSelect = document.getElementById('attendance');
-    const guestsInput = document.getElementById('guests');
-
-    attendanceSelect.addEventListener('change', function() {
-        if (this.value === 'no') {
-            guestsInput.disabled = true;
-            guestsInput.value = 0;
-        } else {
-            guestsInput.disabled = false;
-            guestsInput.value = 1;
-        }
     });
 }
