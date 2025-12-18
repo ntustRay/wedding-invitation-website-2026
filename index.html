@@ -10,11 +10,41 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Language Toggle -->
-    <button class="lang-toggle" id="langToggle" aria-label="Toggle Language">
-        <span class="lang-zh">EN</span>
-        <span class="lang-en" style="display:none;">中文</span>
-    </button>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand script">M & S</div>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#hero">
+                <span class="lang-zh">首頁</span>
+                <span class="lang-en" style="display:none;">Home</span>
+            </a></li>
+            <li><a href="#invitation">
+                <span class="lang-zh">婚禮資訊</span>
+                <span class="lang-en" style="display:none;">Details</span>
+            </a></li>
+            <li><a href="#gallery">
+                <span class="lang-zh">相簿</span>
+                <span class="lang-en" style="display:none;">Gallery</span>
+            </a></li>
+            <li><a href="#location">
+                <span class="lang-zh">交通</span>
+                <span class="lang-en" style="display:none;">Location</span>
+            </a></li>
+            <li><a href="#rsvp">
+                <span class="lang-zh">出席回覆</span>
+                <span class="lang-en" style="display:none;">RSVP</span>
+            </a></li>
+        </ul>
+        <button class="lang-toggle" id="langToggle" aria-label="Toggle Language">
+            <span class="lang-zh">EN</span>
+            <span class="lang-en" style="display:none;">中文</span>
+        </button>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
@@ -30,7 +60,7 @@
             <p class="hero-date">2026.02.08</p>
             <div class="countdown" id="countdown">
                 <div class="countdown-item">
-                    <span class="countdown-number" id="days">000</span>
+                    <span class="countdown-number" id="days">00</span>
                     <span class="countdown-label">
                         <span class="lang-zh">天</span>
                         <span class="lang-en" style="display:none;">Days</span>
