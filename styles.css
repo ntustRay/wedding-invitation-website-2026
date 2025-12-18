@@ -548,6 +548,12 @@ a {
     font-size: 1rem !important;
 }
 
+/* ===== Download Invitation ===== */
+.download-invitation {
+    text-align: center;
+    margin-top: 3rem;
+}
+
 /* ===== Floral Decorations ===== */
 .floral-decoration {
     position: absolute;

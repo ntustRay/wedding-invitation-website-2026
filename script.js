@@ -1,5 +1,36 @@
 // ===== Wedding Invitation Website JavaScript =====
 
+// ===== Easter Egg for Developers =====
+console.log(`
+%c💒 MingRay & ShihYu Wedding 💒
+%c徐明睿 & 陸詩羽
+%c2026.02.08
+
+%c    ♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
+    ♥                         ♥
+    ♥   Thanks for visiting   ♥
+    ♥     our wedding site!   ♥
+    ♥                         ♥
+    ♥   感謝您參加我們的婚禮   ♥
+    ♥                         ♥
+    ♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥
+
+%c👀 Hey developer! You found the secret!
+%c🎉 We hope you enjoy our special day!
+%c💕 Love conquers all ~ 愛能戰勝一切
+
+%c— Built with ❤️ by MingRay —
+`,
+'color: #6b8e6b; font-size: 24px; font-weight: bold;',
+'color: #6b8e6b; font-size: 18px;',
+'color: #888; font-size: 14px;',
+'color: #d4a5a5; font-size: 12px;',
+'color: #ff6b6b; font-size: 14px; font-weight: bold;',
+'color: #4ecdc4; font-size: 14px;',
+'color: #ff6b6b; font-size: 14px;',
+'color: #888; font-size: 11px; font-style: italic;'
+);
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all features
     initNavbar();
@@ -10,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScroll();
     initScrollButton();
     initMusic();
+    initFooterEasterEgg();
 });
 
 // ===== Background Music =====
@@ -40,6 +72,37 @@ function initMusic() {
 
     // Set initial volume
     bgMusic.volume = 0.5;
+}
+
+// ===== Footer Easter Egg =====
+let footerClickCount = 0;
+let footerClickTimer = null;
+
+function initFooterEasterEgg() {
+    const footer = document.querySelector('.footer');
+
+    if (footer) {
+        footer.style.cursor = 'pointer';
+        footer.addEventListener('click', function(e) {
+            e.stopPropagation();
+            footerClickCount++;
+
+            // Reset count after 3 seconds of no clicks
+            clearTimeout(footerClickTimer);
+            footerClickTimer = setTimeout(() => {
+                footerClickCount = 0;
+            }, 3000);
+
+            if (footerClickCount === 3) {
+                alert('別再按了，沒有彩蛋 🥚❌');
+            } else if (footerClickCount === 6) {
+                alert('真的沒有了啦！ 😤');
+            } else if (footerClickCount === 9) {
+                alert('好啦好啦，祝你們幸福快樂！ 💕🎉');
+                footerClickCount = 0;
+            }
+        });
+    }
 }
 
 // ===== Scroll Button =====
@@ -201,6 +264,8 @@ function initLightbox() {
     ];
 
     let currentIndex = 0;
+    let galleryTimer = null;
+    let galleryEasterEggShown = false;
 
     // Open lightbox when clicking gallery item
     galleryItems.forEach((item, index) => {
@@ -214,11 +279,25 @@ function initLightbox() {
         lightboxImg.src = images[currentIndex];
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
+
+        // Easter egg: watching gallery for 8 seconds
+        if (!galleryEasterEggShown) {
+            galleryTimer = setTimeout(() => {
+                alert('一直看，我們會害羞 😳💕');
+                galleryEasterEggShown = true;
+            }, 8000);
+        }
     }
 
     function closeLightbox() {
         lightbox.classList.remove('active');
         document.body.style.overflow = '';
+
+        // Clear easter egg timer
+        if (galleryTimer) {
+            clearTimeout(galleryTimer);
+            galleryTimer = null;
+        }
     }
 
     function showPrev() {
