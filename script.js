@@ -55,7 +55,16 @@ document.addEventListener('DOMContentLoaded', function () {
     initScrollButton();
     initMusic();
     initFooterEasterEgg();
+    initCopyright();
 });
+
+// ===== Dynamic Copyright Year =====
+function initCopyright() {
+    const yearEl = document.getElementById('currentYear');
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+    }
+}
 
 // ===== Background Music =====
 function initMusic() {

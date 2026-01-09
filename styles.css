@@ -730,6 +730,15 @@ a {
     font-size: 0.95rem;
 }
 
+.footer-copyright {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.85rem;
+    opacity: 0.7;
+    letter-spacing: 0.05em;
+}
+
 /* ===== Lightbox ===== */
 .lightbox {
     display: none;
