@@ -1,5 +1,18 @@
 // ===== Wedding Invitation Website JavaScript =====
 
+// ===== Utility: Debounce =====
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
 // ===== Easter Egg for Developers =====
 console.log(`
 %c💒 MingRay & ShihYu Wedding 💒
@@ -48,6 +61,8 @@ document.addEventListener('DOMContentLoaded', function () {
 function initMusic() {
     const musicToggle = document.getElementById('musicToggle');
     const bgMusic = document.getElementById('bgMusic');
+    if (!musicToggle || !bgMusic) return;
+
     const iconOn = musicToggle.querySelector('.music-icon-on');
     const iconOff = musicToggle.querySelector('.music-icon-off');
 
@@ -108,6 +123,7 @@ function initFooterEasterEgg() {
 // ===== Scroll Button =====
 function initScrollButton() {
     const scrollBtn = document.getElementById('scrollBtn');
+    if (!scrollBtn) return;
 
     // Show/hide button and toggle direction based on scroll position
     function updateScrollButton() {
@@ -148,7 +164,7 @@ function initScrollButton() {
         }
     });
 
-    window.addEventListener('scroll', updateScrollButton);
+    window.addEventListener('scroll', debounce(updateScrollButton, 10));
     updateScrollButton(); // Initial check
 }
 
@@ -157,6 +173,7 @@ function initNavbar() {
     const navbar = document.getElementById('navbar');
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
+    if (!navbar || !navToggle || !navMenu) return;
 
     // Mobile menu toggle
     navToggle.addEventListener('click', function () {
@@ -172,14 +189,15 @@ function initNavbar() {
         });
     });
 
-    // Navbar scroll effect
-    window.addEventListener('scroll', function () {
+    // Navbar scroll effect (debounced)
+    function updateNavbar() {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
-    });
+    }
+    window.addEventListener('scroll', debounce(updateNavbar, 10));
 }
 
 // ===== Countdown Timer =====
@@ -218,8 +236,7 @@ function initCountdown() {
 // ===== Language Toggle =====
 function initLanguageToggle() {
     const toggle = document.getElementById('langToggle');
-    const zhElements = document.querySelectorAll('.lang-zh');
-    const enElements = document.querySelectorAll('.lang-en');
+    if (!toggle) return;
 
     // Load saved language preference
     let currentLang = localStorage.getItem('wedding-lang') || 'zh';
@@ -232,15 +249,8 @@ function initLanguageToggle() {
     });
 
     function setLanguage(lang) {
-        if (lang === 'zh') {
-            zhElements.forEach(el => el.style.display = '');
-            enElements.forEach(el => el.style.display = 'none');
-            document.documentElement.lang = 'zh-TW';
-        } else {
-            zhElements.forEach(el => el.style.display = 'none');
-            enElements.forEach(el => el.style.display = '');
-            document.documentElement.lang = 'en';
-        }
+        // CSS handles show/hide based on html[lang] attribute
+        document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
     }
 }
 
@@ -252,16 +262,13 @@ function initLightbox() {
     const prevBtn = document.getElementById('lightboxPrev');
     const nextBtn = document.getElementById('lightboxNext');
     const galleryItems = document.querySelectorAll('.gallery-item');
+    if (!lightbox || !lightboxImg) return;
 
-    const images = [
-        'assets/compression/DSC00009.jpg',
-        'assets/compression/DSC00286.jpg',
-        'assets/compression/DSC00370.jpg',
-        'assets/compression/DSC00401.jpg',
-        'assets/compression/DSC00521.jpg',
-        'assets/compression/DSC00524.jpg',
-        'assets/compression/DSC00535.jpg'
-    ];
+    // Generate images array from DOM
+    const images = Array.from(galleryItems).map(item => {
+        const img = item.querySelector('img');
+        return img ? img.src : null;
+    }).filter(Boolean);
 
     let currentIndex = 0;
     let galleryTimer = null;

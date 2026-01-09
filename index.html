@@ -4,10 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MingRay & ShihYu Wedding | 徐明睿 & 陸詩羽 婚禮</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="apple-touch-icon" href="favicon.svg">
+    <meta name="description" content="You're invited to the wedding of MingRay & ShihYu on February 8, 2026. 誠摯邀請您參加徐明睿與陸詩羽的婚禮。">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="MingRay & ShihYu Wedding | 徐明睿 & 陸詩羽 婚禮">
+    <meta property="og:description" content="You're invited to our wedding celebration on February 8, 2026. 誠摯邀請您參加我們的婚禮。">
+    <meta property="og:image" content="assets/compression/DSC00009.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" as="image" href="assets/webp/DSC00009.webp" type="image/webp">
+    <link rel="preload" as="style" href="styles.css">
+
+    <!-- DNS Prefetch & Preconnect -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://forms.gle">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+
+    <!-- Fonts with display=swap for faster text rendering -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Noto+Serif+TC:wght@400;600;700&family=LXGW+WenKai+TC:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -23,28 +43,28 @@
         <ul class="nav-menu" id="navMenu">
             <li><a href="#hero">
                 <span class="lang-zh">首頁</span>
-                <span class="lang-en" style="display:none;">Home</span>
+                <span class="lang-en">Home</span>
             </a></li>
             <li><a href="#invitation">
                 <span class="lang-zh">婚禮資訊</span>
-                <span class="lang-en" style="display:none;">Details</span>
+                <span class="lang-en">Details</span>
             </a></li>
             <li><a href="#gallery">
                 <span class="lang-zh">相簿</span>
-                <span class="lang-en" style="display:none;">Gallery</span>
+                <span class="lang-en">Gallery</span>
             </a></li>
             <li><a href="#location">
                 <span class="lang-zh">交通</span>
-                <span class="lang-en" style="display:none;">Location</span>
+                <span class="lang-en">Location</span>
             </a></li>
             <li><a href="#rsvp">
                 <span class="lang-zh">出席回覆</span>
-                <span class="lang-en" style="display:none;">RSVP</span>
+                <span class="lang-en">RSVP</span>
             </a></li>
         </ul>
         <button class="lang-toggle" id="langToggle" aria-label="Toggle Language">
             <span class="lang-zh">EN</span>
-            <span class="lang-en" style="display:none;">中文</span>
+            <span class="lang-en">中文</span>
         </button>
     </nav>
 
@@ -58,11 +78,11 @@
         <div class="hero-content">
             <p class="hero-subtitle">
                 <span class="lang-zh">我們要結婚了</span>
-                <span class="lang-en" style="display:none;">We're Getting Married</span>
+                <span class="lang-en">We're Getting Married</span>
             </p>
             <h1 class="hero-title">
                 <span class="lang-zh">徐明睿 & 陸詩羽</span>
-                <span class="lang-en" style="display:none;">MingRay & ShihYu</span>
+                <span class="lang-en">MingRay & ShihYu</span>
             </h1>
             <p class="hero-date">2026.02.08</p>
             <div class="countdown" id="countdown">
@@ -70,34 +90,34 @@
                     <span class="countdown-number" id="days">00</span>
                     <span class="countdown-label">
                         <span class="lang-zh">天</span>
-                        <span class="lang-en" style="display:none;">Days</span>
+                        <span class="lang-en">Days</span>
                     </span>
                 </div>
                 <div class="countdown-item">
                     <span class="countdown-number" id="hours">00</span>
                     <span class="countdown-label">
                         <span class="lang-zh">時</span>
-                        <span class="lang-en" style="display:none;">Hours</span>
+                        <span class="lang-en">Hours</span>
                     </span>
                 </div>
                 <div class="countdown-item">
                     <span class="countdown-number" id="minutes">00</span>
                     <span class="countdown-label">
                         <span class="lang-zh">分</span>
-                        <span class="lang-en" style="display:none;">Mins</span>
+                        <span class="lang-en">Mins</span>
                     </span>
                 </div>
                 <div class="countdown-item">
                     <span class="countdown-number" id="seconds">00</span>
                     <span class="countdown-label">
                         <span class="lang-zh">秒</span>
-                        <span class="lang-en" style="display:none;">Secs</span>
+                        <span class="lang-en">Secs</span>
                     </span>
                 </div>
             </div>
             <a href="#invitation" class="scroll-down">
                 <span class="lang-zh">往下瀏覽</span>
-                <span class="lang-en" style="display:none;">Scroll Down</span>
+                <span class="lang-en">Scroll Down</span>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M12 5v14M5 12l7 7 7-7"/>
                 </svg>
@@ -114,11 +134,11 @@
             <div class="top-right floral-decoration"></div>
             <h2 class="section-title script">
                 <span class="lang-zh">誠摯邀請您</span>
-                <span class="lang-en" style="display:none;">You're Invited</span>
+                <span class="lang-en">You're Invited</span>
             </h2>
             <p class="invitation-text">
                 <span class="lang-zh">參加我們的婚禮</span>
-                <span class="lang-en" style="display:none;">To Our Wedding Celebration</span>
+                <span class="lang-en">To Our Wedding Celebration</span>
             </p>
             <div class="event-details">
                 <div class="detail-item">
@@ -132,11 +152,11 @@
                     </div>
                     <h3>
                         <span class="lang-zh">日期</span>
-                        <span class="lang-en" style="display:none;">Date</span>
+                        <span class="lang-en">Date</span>
                     </h3>
                     <p>
                         <span class="lang-zh">2026年2月8日 星期日</span>
-                        <span class="lang-en" style="display:none;">Sunday, February 8, 2026</span>
+                        <span class="lang-en">Sunday, February 8, 2026</span>
                     </p>
                 </div>
                 <div class="detail-item">
@@ -148,11 +168,11 @@
                     </div>
                     <h3>
                         <span class="lang-zh">時間</span>
-                        <span class="lang-en" style="display:none;">Time</span>
+                        <span class="lang-en">Time</span>
                     </h3>
                     <p>
                         <span class="lang-zh">中午 12:00</span>
-                        <span class="lang-en" style="display:none;">12:00 PM</span>
+                        <span class="lang-en">12:00 PM</span>
                     </p>
                 </div>
                 <div class="detail-item">
@@ -164,15 +184,15 @@
                     </div>
                     <h3>
                         <span class="lang-zh">地點</span>
-                        <span class="lang-en" style="display:none;">Venue</span>
+                        <span class="lang-en">Venue</span>
                     </h3>
                     <p class="venue-name">
                         <span class="lang-zh">新店彭園會館</span>
-                        <span class="lang-en" style="display:none;">Penguyuan Xindian</span>
+                        <span class="lang-en">Penguyuan Xindian</span>
                     </p>
                     <p class="venue-address">
                         <span class="lang-zh">231新北市新店區北新路三段207之1號1樓</span>
-                        <span class="lang-en" style="display:none;">1F, No. 207-1, Sec. 3, Beixin Rd, Xindian Dist, New Taipei City 231</span>
+                        <span class="lang-en">1F, No. 207-1, Sec. 3, Beixin Rd, Xindian Dist, New Taipei City 231</span>
                     </p>
                 </div>
             </div>
@@ -184,7 +204,7 @@
                         <line x1="12" y1="15" x2="12" y2="3"/>
                     </svg>
                     <span class="lang-zh">下載邀請卡</span>
-                    <span class="lang-en" style="display:none;">Download Invitation</span>
+                    <span class="lang-en">Download Invitation</span>
                 </a>
             </div>
             <div class="bottom-left floral-decoration"></div>
@@ -197,33 +217,54 @@
         <div class="container">
             <h2 class="section-title">
                 <span class="lang-zh">我們的照片</span>
-                <span class="lang-en" style="display:none;">Our Photos</span>
+                <span class="lang-en">Our Photos</span>
             </h2>
             <p class="section-subtitle">
                 <span class="lang-zh">婚紗照~價值不斐</span>
-                <span class="lang-en" style="display:none;">Wedding photos ~ Priceless</span>
+                <span class="lang-en">Wedding photos ~ Priceless</span>
             </p>
             <div class="gallery-grid">
                 <div class="gallery-item" data-index="0">
-                    <img src="assets/compression/DSC00009.jpg" alt="Wedding Photo 1" loading="lazy">
+                    <picture>
+                        <source srcset="assets/webp/DSC00009.webp" type="image/webp">
+                        <img src="assets/compression/DSC00009.jpg" alt="MingRay and ShihYu wedding portrait - couple together" loading="lazy">
+                    </picture>
                 </div>
                 <div class="gallery-item" data-index="1">
-                    <img src="assets/compression/DSC00286.jpg" alt="Wedding Photo 2" loading="lazy">
+                    <picture>
+                        <source srcset="assets/webp/DSC00286.webp" type="image/webp">
+                        <img src="assets/compression/DSC00286.jpg" alt="MingRay and ShihYu pre-wedding photoshoot" loading="lazy">
+                    </picture>
                 </div>
                 <div class="gallery-item" data-index="2">
-                    <img src="assets/compression/DSC00370.jpg" alt="Wedding Photo 3" loading="lazy">
+                    <picture>
+                        <source srcset="assets/webp/DSC00370.webp" type="image/webp">
+                        <img src="assets/compression/DSC00370.jpg" alt="Couple in wedding attire outdoors" loading="lazy">
+                    </picture>
                 </div>
                 <div class="gallery-item" data-index="3">
-                    <img src="assets/compression/DSC00401.jpg" alt="Wedding Photo 4" loading="lazy">
+                    <picture>
+                        <source srcset="assets/webp/DSC00401.webp" type="image/webp">
+                        <img src="assets/compression/DSC00401.jpg" alt="Romantic moment between the couple" loading="lazy">
+                    </picture>
                 </div>
                 <div class="gallery-item" data-index="4">
-                    <img src="assets/compression/DSC00521.jpg" alt="Wedding Photo 5" loading="lazy">
+                    <picture>
+                        <source srcset="assets/webp/DSC00521.webp" type="image/webp">
+                        <img src="assets/compression/DSC00521.jpg" alt="Wedding photo with scenic background" loading="lazy">
+                    </picture>
                 </div>
                 <div class="gallery-item" data-index="5">
-                    <img src="assets/compression/DSC00524.jpg" alt="Wedding Photo 6" loading="lazy">
+                    <picture>
+                        <source srcset="assets/webp/DSC00524.webp" type="image/webp">
+                        <img src="assets/compression/DSC00524.jpg" alt="Bride and groom celebrating together" loading="lazy">
+                    </picture>
                 </div>
                 <div class="gallery-item" data-index="6">
-                    <img src="assets/compression/DSC00535.jpg" alt="Wedding Photo 7" loading="lazy">
+                    <picture>
+                        <source srcset="assets/webp/DSC00535.webp" type="image/webp">
+                        <img src="assets/compression/DSC00535.jpg" alt="MingRay and ShihYu wedding portrait closeup" loading="lazy">
+                    </picture>
                 </div>
             </div>
         </div>
@@ -234,20 +275,23 @@
         <div class="container">
             <h2 class="section-title">
                 <span class="lang-zh">交通資訊</span>
-                <span class="lang-en" style="display:none;">Location</span>
+                <span class="lang-en">Location</span>
             </h2>
             <div class="location-content">
                 <div class="map-container">
-                    <img src="assets/info/交通圖.jpg" alt="Location Map" class="location-map">
+                    <picture>
+                        <source srcset="assets/webp/traffic-map.webp" type="image/webp">
+                        <img src="assets/info/交通圖.jpg" alt="Location Map" class="location-map" loading="lazy">
+                    </picture>
                 </div>
                 <div class="location-info">
                     <h3>
                         <span class="lang-zh">新店彭園會館</span>
-                        <span class="lang-en" style="display:none;">Penguyuan Xindian</span>
+                        <span class="lang-en">Penguyuan Xindian</span>
                     </h3>
                     <p class="address">
                         <span class="lang-zh">231新北市新店區北新路三段207之1號1樓</span>
-                        <span class="lang-en" style="display:none;">1F, No. 207-1, Sec. 3, Beixin Rd, Xindian Dist, New Taipei City 231</span>
+                        <span class="lang-en">1F, No. 207-1, Sec. 3, Beixin Rd, Xindian Dist, New Taipei City 231</span>
                     </p>
                     <a href="https://maps.google.com/?q=新店彭園會館" target="_blank" rel="noopener" class="btn btn-primary">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -255,7 +299,7 @@
                             <circle cx="12" cy="10" r="3"/>
                         </svg>
                         <span class="lang-zh">開啟 Google Maps</span>
-                        <span class="lang-en" style="display:none;">Open Google Maps</span>
+                        <span class="lang-en">Open Google Maps</span>
                     </a>
                 </div>
             </div>
@@ -267,11 +311,11 @@
         <div class="container">
             <h2 class="section-title script">
                 <span class="lang-zh">敬請回覆</span>
-                <span class="lang-en" style="display:none;">RSVP</span>
+                <span class="lang-en">RSVP</span>
             </h2>
             <p class="section-subtitle">
                 <span class="lang-zh">期待您的出席</span>
-                <span class="lang-en" style="display:none;">We hope you can join us</span>
+                <span class="lang-en">We hope you can join us</span>
             </p>
             <div class="rsvp-content">
                 <a href="https://forms.gle/kwmS6KrVZunUGsHA8" target="_blank" rel="noopener" class="btn btn-primary btn-large">
@@ -283,7 +327,7 @@
                         <polyline points="10 9 9 9 8 9"/>
                     </svg>
                     <span class="lang-zh">填寫出席表單</span>
-                    <span class="lang-en" style="display:none;">Fill Out RSVP Form</span>
+                    <span class="lang-en">Fill Out RSVP Form</span>
                 </a>
             </div>
         </div>
@@ -296,7 +340,7 @@
             <p class="footer-date">2026.02.08</p>
             <p class="footer-thanks">
                 <span class="lang-zh">感謝您的祝福</span>
-                <span class="lang-en" style="display:none;">Thank you for your blessings</span>
+                <span class="lang-en">Thank you for your blessings</span>
             </p>
         </div>
     </footer>
@@ -313,7 +357,7 @@
 
     <!-- Music Button (Floating) -->
     <button class="music-toggle" id="musicToggle" aria-label="Toggle Music">
-        <svg class="music-icon-on" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+        <svg class="music-icon-on" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M9 18V5l12-2v13"/>
             <circle cx="6" cy="18" r="3"/>
             <circle cx="18" cy="16" r="3"/>
@@ -336,6 +380,6 @@
         </svg>
     </button>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
