@@ -1,0 +1,81 @@
+# Wedding Invitation Website - Personal Photos Protection
+# These are private personal photos. Do not crawl or use for AI training.
+
+# Block all AI training crawlers
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: Omgilibot
+Disallow: /
+
+User-agent: Timpibot
+Disallow: /
+
+User-agent: img2dataset
+Disallow: /
+
+# Block common scrapers
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+# Allow search engines to index the main page only (for guests to find)
+User-agent: Googlebot
+Disallow: /assets/
+
+User-agent: Bingbot
+Disallow: /assets/
+
+User-agent: *
+Disallow: /assets/
+Disallow: /assets/webp/
+Disallow: /assets/compression/
+Disallow: /assets/info/
+Disallow: /assets/original/

@@ -1,0 +1,9 @@
+# AI Training Opt-Out
+# This file signals that content in this repository should NOT be used for AI training
+
+User-agent: *
+Disallow: /
+
+# This repository contains personal photographs and private information.
+# NO permission is granted for AI/ML training purposes.
+# See LICENSE file for full terms.
