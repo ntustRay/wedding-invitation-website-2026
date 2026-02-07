@@ -1,0 +1,1539 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>座位查詢 | MingRay & ShihYu Wedding</title>
+    <meta
+      name="description"
+      content="Find your seat at MingRay & ShihYu's wedding. 查詢您的婚宴座位。"
+    />
+    <meta name="robots" content="noai, noimageai" />
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Noto+Serif+TC:wght@400;600;700&family=LXGW+WenKai+TC:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #f5f0e8;
+        --bg-light: #faf8f4;
+        --primary: #6b8e6b;
+        --primary-dark: #5a7a5a;
+        --accent: #c9b896;
+        --accent-light: #e0d4bc;
+        --text: #3d3d3d;
+        --text-light: #7a7a7a;
+        --white: #ffffff;
+        --red: #b85c5c;
+        --red-main: #c0392b;
+        --font-script: "Great Vibes", cursive;
+        --font-serif: "Cormorant Garamond", serif;
+        --font-tc: "Noto Serif TC", serif;
+        --font-elegant: "LXGW WenKai TC", serif;
+        --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.12);
+      }
+
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family:
+          var(--font-elegant), var(--font-tc), var(--font-serif), serif;
+        background: var(--bg);
+        color: var(--text);
+        font-size: 17px;
+        line-height: 1.7;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+
+      html[lang="zh-TW"] .lang-en {
+        display: none;
+      }
+      html[lang="en"] .lang-zh {
+        display: none;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse at 20% 0%,
+            rgba(107, 142, 107, 0.06) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 80% 100%,
+            rgba(201, 184, 150, 0.08) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* ===== Header ===== */
+      .seat-header {
+        position: relative;
+        text-align: center;
+        padding: 3rem 1.5rem 2rem;
+        background: var(--primary);
+        color: var(--white);
+        overflow: hidden;
+      }
+      .seat-header::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 40px;
+        background: var(--bg);
+        clip-path: ellipse(55% 100% at 50% 100%);
+      }
+      .header-back {
+        position: absolute;
+        top: 1.25rem;
+        left: 1.5rem;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.95rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        text-decoration: none;
+        transition: color 0.3s;
+        z-index: 2;
+      }
+      .header-back:hover {
+        color: #fff;
+      }
+      .header-back svg {
+        width: 18px;
+        height: 18px;
+      }
+      .header-lang {
+        position: absolute;
+        top: 1.25rem;
+        right: 1.5rem;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: var(--white);
+        padding: 0.3rem 0.9rem;
+        border-radius: 20px;
+        font-family: inherit;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        z-index: 2;
+      }
+      .header-lang:hover {
+        background: rgba(255, 255, 255, 0.25);
+      }
+      .header-script {
+        font-family: var(--font-script);
+        font-size: clamp(2rem, 5.5vw, 3.2rem);
+        font-weight: 400;
+        opacity: 0;
+        transform: translateY(16px);
+        animation: fadeUp 0.8s 0.2s forwards;
+      }
+      .header-names {
+        font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+        letter-spacing: 0.25em;
+        opacity: 0.85;
+        margin-bottom: 0.5rem;
+        opacity: 0;
+        transform: translateY(16px);
+        animation: fadeUp 0.8s 0.35s forwards;
+      }
+      .header-title {
+        font-size: clamp(1.1rem, 3vw, 1.5rem);
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        opacity: 0;
+        transform: translateY(16px);
+        animation: fadeUp 0.8s 0.5s forwards;
+      }
+      .header-divider {
+        width: 60px;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.4);
+        margin: 0.75rem auto;
+        opacity: 0;
+        animation: fadeUp 0.8s 0.45s forwards;
+      }
+
+      /* ===== Search ===== */
+      .search-section {
+        position: relative;
+        z-index: 10;
+        max-width: 560px;
+        margin: -1.5rem auto 0;
+        padding: 0 1.25rem;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUp 0.8s 0.6s forwards;
+      }
+      .search-card {
+        background: var(--white);
+        border-radius: 16px;
+        padding: 1.75rem 1.5rem;
+        box-shadow: var(--shadow-lg);
+        border: 1px solid rgba(201, 184, 150, 0.25);
+      }
+      .search-label {
+        display: block;
+        text-align: center;
+        font-size: 0.9rem;
+        color: var(--text-light);
+        margin-bottom: 0.75rem;
+      }
+      .search-box {
+        position: relative;
+      }
+      .search-box input {
+        width: 100%;
+        padding: 0.85rem 1.25rem 0.85rem 3rem;
+        border: 2px solid var(--accent-light);
+        border-radius: 50px;
+        font-family: inherit;
+        font-size: 1.05rem;
+        color: var(--text);
+        background: var(--bg-light);
+        transition: all 0.3s;
+        outline: none;
+      }
+      .search-box input::placeholder {
+        color: #b5b0a5;
+      }
+      .search-box input:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(107, 142, 107, 0.1);
+      }
+      .search-box .search-icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--accent);
+        pointer-events: none;
+        transition: color 0.3s;
+      }
+      .search-box input:focus ~ .search-icon {
+        color: var(--primary);
+      }
+      .search-box .clear-btn {
+        position: absolute;
+        right: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: var(--text-light);
+        cursor: pointer;
+        font-size: 1.2rem;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+      }
+      .clear-btn.visible {
+        display: flex;
+      }
+      .clear-btn:hover {
+        background: rgba(0, 0, 0, 0.05);
+        color: var(--text);
+      }
+
+      /* Result */
+      .result-card {
+        margin-top: 1.25rem;
+        background: linear-gradient(135deg, #f9f6f0 0%, #f5f0e8 100%);
+        border: 1px solid var(--accent-light);
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: center;
+        display: none;
+        animation: resultReveal 0.5s ease forwards;
+        position: relative;
+        overflow: hidden;
+      }
+      .result-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--accent),
+          var(--primary),
+          var(--accent)
+        );
+      }
+      .result-card.visible {
+        display: block;
+      }
+      .result-card .result-greeting {
+        font-size: 0.85rem;
+        color: var(--text-light);
+      }
+      .result-card .result-name {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin: 0.25rem 0 0.5rem;
+      }
+      .result-card .result-table-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--primary);
+        color: var(--white);
+        padding: 0.5rem 1.5rem;
+        border-radius: 50px;
+        font-size: 1.05rem;
+        font-weight: 600;
+      }
+      .result-card .result-table-badge svg {
+        width: 18px;
+        height: 18px;
+        opacity: 0.85;
+      }
+      .result-card .result-seats {
+        margin-top: 0.6rem;
+        font-size: 0.85rem;
+        color: var(--text-light);
+      }
+      .result-card .result-companions {
+        margin-top: 0.25rem;
+        font-size: 0.8rem;
+        color: var(--accent);
+      }
+
+      .no-result {
+        margin-top: 1rem;
+        text-align: center;
+        color: var(--text-light);
+        font-size: 0.9rem;
+        display: none;
+      }
+      .no-result.visible {
+        display: block;
+      }
+
+      /* Suggestions */
+      .suggestions {
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        right: 0;
+        background: var(--white);
+        border-radius: 12px;
+        box-shadow: var(--shadow-lg);
+        border: 1px solid rgba(201, 184, 150, 0.2);
+        overflow: hidden;
+        z-index: 20;
+        display: none;
+        max-height: 240px;
+        overflow-y: auto;
+      }
+      .suggestions.visible {
+        display: block;
+      }
+      .suggestion-item {
+        padding: 0.65rem 1.25rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.95rem;
+        transition: background 0.15s;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      }
+      .suggestion-item:last-child {
+        border-bottom: none;
+      }
+      .suggestion-item:hover,
+      .suggestion-item.active {
+        background: rgba(107, 142, 107, 0.08);
+      }
+      .suggestion-item .s-name {
+        font-weight: 600;
+      }
+      .suggestion-item .s-table {
+        font-size: 0.8rem;
+        color: var(--text-light);
+        background: var(--bg);
+        padding: 0.15rem 0.6rem;
+        border-radius: 10px;
+      }
+      .suggestion-item mark {
+        background: rgba(107, 142, 107, 0.2);
+        color: inherit;
+        border-radius: 2px;
+      }
+      .suggestions::-webkit-scrollbar {
+        width: 6px;
+      }
+      .suggestions::-webkit-scrollbar-thumb {
+        background: var(--accent-light);
+        border-radius: 3px;
+      }
+
+      /* ===== Section Heading ===== */
+      .section-heading {
+        text-align: center;
+        margin-bottom: 1.25rem;
+      }
+      .section-heading h2 {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        font-weight: 400;
+        letter-spacing: 0.05em;
+      }
+      .section-heading .heading-sub {
+        font-size: 0.9rem;
+        color: var(--text-light);
+        margin-top: 0.2rem;
+      }
+
+      /* ===== Floor Plan ===== */
+      .floorplan-section {
+        max-width: 960px;
+        margin: 2.5rem auto 0;
+        padding: 0 0.75rem;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUp 0.8s 0.75s forwards;
+      }
+
+      .venue {
+        background: var(--white);
+        border: 2px solid var(--accent);
+        border-radius: 12px;
+        padding: 14px 10px 18px;
+        box-shadow: var(--shadow);
+      }
+      .venue-title {
+        text-align: center;
+        font-size: 0.75rem;
+        color: var(--text-light);
+        letter-spacing: 0.15em;
+        margin-bottom: 8px;
+      }
+      .venue-led {
+        background: #555;
+        color: #ccc;
+        text-align: center;
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        padding: 3px 0;
+        border-radius: 4px;
+        margin-bottom: 8px;
+      }
+      .venue-stage {
+        background: #888;
+        color: #fff;
+        text-align: center;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        padding: 12px 0;
+        border-radius: 6px;
+        margin: 0 auto 10px;
+        width: 42%;
+      }
+      .venue-extras {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 4px;
+        padding: 0 2px;
+      }
+      .v-small {
+        font-size: 0.5rem;
+        color: var(--text-light);
+        background: rgba(0, 0, 0, 0.04);
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+      .v-small-group {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        align-items: flex-end;
+      }
+      .venue-sides {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        font-size: 0.7rem;
+        margin-bottom: 4px;
+      }
+      .venue-sides .side-groom {
+        color: var(--primary);
+        font-weight: 700;
+      }
+      .venue-sides .side-bride {
+        color: var(--red);
+        font-weight: 700;
+      }
+
+      /* Table grid - 3 columns, 5 rows */
+      .venue-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: repeat(5, auto);
+        gap: 12px 10px;
+      }
+
+      /* Table circle */
+      .v-table {
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.35s ease;
+        position: relative;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 220px;
+        aspect-ratio: 1;
+        border: 2px solid transparent;
+        user-select: none;
+        padding: 7%;
+        overflow: hidden;
+      }
+
+      .v-table .t-name {
+        font-size: clamp(0.9rem, 3vw, 1.3rem);
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: 0.03em;
+        margin-bottom: 5px;
+      }
+      .v-table .t-guests {
+        font-size: clamp(0.65rem, 2.2vw, 1rem);
+        line-height: 1.5;
+        opacity: 0.85;
+        font-weight: 400;
+        max-height: 60%;
+        overflow: hidden;
+      }
+
+      .v-table.groom-table {
+        background: rgba(107, 142, 107, 0.1);
+        color: var(--primary-dark);
+        border-color: rgba(107, 142, 107, 0.25);
+      }
+      .v-table.bride-table {
+        background: rgba(184, 92, 92, 0.08);
+        color: var(--red);
+        border-color: rgba(184, 92, 92, 0.2);
+      }
+      .v-table.main-table {
+        background: var(--red-main);
+        color: var(--white);
+        border-color: var(--red-main);
+        box-shadow: 0 4px 16px rgba(192, 57, 43, 0.3);
+      }
+      .v-table.main-table .t-guests {
+        opacity: 0.85;
+      }
+
+      .v-table:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      }
+
+      /* Highlight state */
+      .v-table.highlight {
+        animation: tablePulse 1.5s ease infinite;
+        z-index: 5;
+      }
+      .v-table.groom-table.highlight {
+        border-color: var(--primary);
+        background: rgba(107, 142, 107, 0.28);
+        box-shadow:
+          0 0 0 6px rgba(107, 142, 107, 0.15),
+          0 4px 20px rgba(107, 142, 107, 0.25);
+      }
+      .v-table.bride-table.highlight {
+        border-color: var(--red);
+        background: rgba(184, 92, 92, 0.22);
+        box-shadow:
+          0 0 0 6px rgba(184, 92, 92, 0.15),
+          0 4px 20px rgba(184, 92, 92, 0.25);
+      }
+      .v-table.main-table.highlight {
+        box-shadow:
+          0 0 0 6px rgba(192, 57, 43, 0.2),
+          0 4px 24px rgba(192, 57, 43, 0.4);
+      }
+
+      /* Highlighted guest name inside circle */
+      .v-table .t-guests .guest-match {
+        font-weight: 700;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      /* Entrance */
+      .venue-entrance {
+        text-align: center;
+        margin-top: 10px;
+      }
+      .venue-entrance .entrance-arrow {
+        color: var(--red-main);
+        font-size: 1.5rem;
+        line-height: 1;
+      }
+      .venue-entrance .entrance-icon {
+        display: block;
+        margin: 0 auto;
+        width: 22px;
+        height: 22px;
+        color: var(--text-light);
+      }
+      .venue-entrance .entrance-label {
+        font-size: 0.6rem;
+        color: var(--text-light);
+      }
+
+      /* Legend */
+      .venue-legend {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 10px;
+        font-size: 0.7rem;
+        color: var(--text-light);
+      }
+      .venue-legend span {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .legend-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .legend-dot.groom {
+        background: rgba(107, 142, 107, 0.35);
+        border: 1px solid rgba(107, 142, 107, 0.5);
+      }
+      .legend-dot.bride {
+        background: rgba(184, 92, 92, 0.25);
+        border: 1px solid rgba(184, 92, 92, 0.4);
+      }
+      .legend-dot.main {
+        background: var(--red-main);
+      }
+
+      /* ===== Mobile Popup ===== */
+      .table-popup-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(3px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        animation: fadeIn 0.2s ease;
+      }
+      .table-popup-overlay.open {
+        display: flex;
+      }
+
+      .table-popup {
+        background: var(--white);
+        border-radius: 20px;
+        max-width: 340px;
+        width: 100%;
+        max-height: 80vh;
+        overflow-y: auto;
+        box-shadow: var(--shadow-lg);
+        animation: popupIn 0.3s ease;
+      }
+
+      .table-popup .popup-header {
+        padding: 1.25rem 1.25rem 0.75rem;
+        text-align: center;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .table-popup .popup-header .popup-table-name {
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+      }
+      .table-popup .popup-header.groom-popup {
+        color: var(--primary-dark);
+      }
+      .table-popup .popup-header.bride-popup {
+        color: var(--red);
+      }
+      .table-popup .popup-header.main-popup {
+        color: var(--red-main);
+      }
+      .table-popup .popup-header .popup-count {
+        font-size: 0.8rem;
+        color: var(--text-light);
+        margin-top: 0.15rem;
+      }
+
+      .table-popup .popup-guests {
+        list-style: none;
+        padding: 0.5rem 1.25rem 1rem;
+      }
+      .table-popup .popup-guests li {
+        padding: 0.45rem 0;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      }
+      .table-popup .popup-guests li:last-child {
+        border-bottom: none;
+      }
+      .table-popup .popup-guests li.popup-match {
+        color: var(--primary-dark);
+        font-weight: 700;
+        background: rgba(107, 142, 107, 0.06);
+        margin: 0 -1.25rem;
+        padding: 0.5rem 1.25rem;
+      }
+      .table-popup .popup-guests .companion-tag {
+        font-size: 0.7rem;
+        background: var(--bg);
+        color: var(--text-light);
+        padding: 0.1rem 0.4rem;
+        border-radius: 4px;
+      }
+      .table-popup .popup-guests .seats-badge {
+        font-size: 0.7rem;
+        color: var(--text-light);
+        margin-left: auto;
+      }
+
+      .table-popup .popup-close {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        border: none;
+        background: var(--bg-light);
+        color: var(--text-light);
+        font-family: inherit;
+        font-size: 0.9rem;
+        cursor: pointer;
+        border-radius: 0 0 20px 20px;
+        transition: background 0.2s;
+      }
+      .table-popup .popup-close:hover {
+        background: var(--bg);
+      }
+
+      /* ===== Footer ===== */
+      .seat-footer {
+        text-align: center;
+        padding: 2rem 1rem;
+        color: var(--text-light);
+        font-size: 0.85rem;
+        border-top: 1px solid var(--accent-light);
+        margin-top: 3rem;
+      }
+      .seat-footer a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      /* ===== Animations ===== */
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes resultReveal {
+        from {
+          opacity: 0;
+          transform: scale(0.96) translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+      @keyframes tablePulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.06);
+        }
+      }
+      @keyframes popupIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9) translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+
+      /* ===== Responsive ===== */
+      @media (max-width: 480px) {
+        .seat-header {
+          padding: 1.5rem 1rem 2rem;
+        }
+        .seat-header::after {
+          height: 25px;
+        }
+        .header-script {
+          font-size: 1.8rem;
+        }
+        .header-names {
+          font-size: 0.75rem;
+          margin-bottom: 0.25rem;
+        }
+        .header-title {
+          font-size: 1rem;
+          color: rgba(255, 255, 255, 0.95);
+        }
+        .header-divider {
+          margin: 0.4rem auto;
+          width: 40px;
+        }
+        .header-back,
+        .header-lang {
+          top: 0.75rem;
+        }
+        .header-back {
+          left: 0.75rem;
+          font-size: 0.8rem;
+        }
+        .header-lang {
+          right: 0.75rem;
+          padding: 0.2rem 0.6rem;
+          font-size: 0.75rem;
+        }
+        .search-section {
+          margin-top: -1rem;
+          padding: 0 0.75rem;
+        }
+        .search-card {
+          padding: 1rem 0.85rem;
+        }
+        .search-label {
+          font-size: 0.8rem;
+          margin-bottom: 0.5rem;
+        }
+        .search-box input {
+          padding: 0.65rem 1rem 0.65rem 2.5rem;
+          font-size: 0.95rem;
+        }
+        .section-heading {
+          margin-bottom: 0.75rem;
+        }
+        .section-heading h2 {
+          font-size: 1.2rem;
+        }
+        .section-heading .heading-sub {
+          font-size: 0.75rem;
+        }
+        .floorplan-section {
+          margin-top: 1.25rem;
+          padding: 0 0.5rem;
+        }
+        .venue {
+          padding: 8px 4px 12px;
+        }
+        .venue-title {
+          font-size: 0.65rem;
+          margin-bottom: 4px;
+        }
+        .venue-led {
+          padding: 2px 0;
+          font-size: 0.5rem;
+          margin-bottom: 4px;
+        }
+        .venue-stage {
+          padding: 6px 0;
+          font-size: 0.7rem;
+          margin-bottom: 6px;
+        }
+        .venue-sides {
+          font-size: 0.6rem;
+          margin-bottom: 2px;
+        }
+        .venue-grid {
+          gap: 6px 4px;
+        }
+        .v-table {
+          max-width: 115px;
+        }
+        .v-table .t-name {
+          font-size: 0.85rem;
+        }
+        .v-table .t-guests {
+          font-size: 0.6rem;
+          line-height: 1.4;
+        }
+      }
+
+      @media (min-width: 481px) and (max-width: 640px) {
+        .v-table {
+          max-width: 160px;
+        }
+        .v-table .t-name {
+          font-size: 1rem;
+        }
+        .v-table .t-guests {
+          font-size: 0.75rem;
+        }
+      }
+
+      @media (min-width: 641px) and (max-width: 800px) {
+        .v-table {
+          max-width: 185px;
+        }
+      }
+
+      .venue-note {
+        text-align: center;
+        font-size: 0.75rem;
+        color: var(--text-light);
+        margin-top: 0.6rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="seat-header">
+      <a href="index.html" class="header-back">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+        <span class="lang-zh">回首頁</span>
+        <span class="lang-en">Home</span>
+      </a>
+      <button class="header-lang" id="langToggle">
+        <span class="lang-zh">EN</span>
+        <span class="lang-en">中文</span>
+      </button>
+      <div class="header-script">MingRay & ShihYu</div>
+      <div class="header-names">徐明睿 & 陸詩羽</div>
+      <div class="header-divider"></div>
+      <div class="header-title">
+        <span class="lang-zh">座位查詢</span>
+        <span class="lang-en">Find Your Seat</span>
+      </div>
+    </header>
+
+    <!-- Search -->
+    <div class="search-section">
+      <div class="search-card">
+        <label class="search-label" for="guestSearch">
+          <span class="lang-zh">輸入您的姓名查詢桌位</span>
+          <span class="lang-en">Enter your name to find your table</span>
+        </label>
+        <div class="search-box">
+          <input
+            type="text"
+            id="guestSearch"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="請輸入姓名..."
+          />
+          <svg
+            class="search-icon"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+          <button class="clear-btn" id="clearBtn" type="button">&times;</button>
+          <div class="suggestions" id="suggestions"></div>
+        </div>
+
+        <div class="result-card" id="resultCard">
+          <div class="result-greeting">
+            <span class="lang-zh">歡迎您！您的座位在</span>
+            <span class="lang-en">Welcome! Your seat is at</span>
+          </div>
+          <div class="result-name" id="resultName"></div>
+          <div class="result-table-badge">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span id="resultTableName"></span>
+          </div>
+          <div class="result-seats" id="resultSeats"></div>
+          <div class="result-companions" id="resultCompanions"></div>
+        </div>
+
+        <div class="no-result" id="noResult">
+          <span class="lang-zh">找不到此姓名，請確認後重試</span>
+          <span class="lang-en">Name not found. Please try again.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floor Plan -->
+    <section class="floorplan-section">
+      <div class="section-heading">
+        <h2>
+          <span class="lang-zh">場地桌位圖</span>
+          <span class="lang-en">Floor Plan</span>
+        </h2>
+        <p class="heading-sub">
+          <span class="lang-zh">點擊桌位查看賓客名單</span>
+          <span class="lang-en">Tap a table to see guests</span>
+        </p>
+      </div>
+      <div class="venue">
+        <div class="venue-title">
+          <span class="lang-zh">彭園 國際宴會D廳</span>
+          <span class="lang-en">Peng Yuan - Hall D</span>
+        </div>
+        <div class="venue-led">LED</div>
+        <div class="venue-stage">STAGE</div>
+        <div class="venue-sides">
+          <span class="side-groom"
+            ><span class="lang-zh">男方</span
+            ><span class="lang-en">Groom</span></span
+          >
+          <span class="side-bride"
+            ><span class="lang-zh">女方</span
+            ><span class="lang-en">Bride</span></span
+          >
+        </div>
+
+        <div class="venue-grid" id="venueGrid">
+          <!-- Row 1 -->
+          <div
+            class="v-table groom-table"
+            data-table="男方親戚"
+            data-side="groom"
+          >
+            <span class="t-name">男方親戚</span>
+            <span class="t-guests"></span>
+          </div>
+          <div class="v-table main-table" data-table="主桌" data-side="bride">
+            <span class="t-name">主桌</span>
+            <span class="t-guests"></span>
+          </div>
+          <div
+            class="v-table bride-table"
+            data-table="陸家親戚"
+            data-side="bride"
+          >
+            <span class="t-name">陸家親戚</span>
+            <span class="t-guests"></span>
+          </div>
+          <!-- Row 2 -->
+          <div
+            class="v-table groom-table"
+            data-table="台積同事"
+            data-side="groom"
+          >
+            <span class="t-name">台積同事</span>
+            <span class="t-guests"></span>
+          </div>
+          <div
+            class="v-table bride-table"
+            data-table="詹家親戚 1"
+            data-side="bride"
+          >
+            <span class="t-name">詹家親戚1</span>
+            <span class="t-guests"></span>
+          </div>
+          <div
+            class="v-table bride-table"
+            data-table="詹家親戚 2"
+            data-side="bride"
+          >
+            <span class="t-name">詹家親戚2</span>
+            <span class="t-guests"></span>
+          </div>
+          <!-- Row 3 -->
+          <div
+            class="v-table groom-table"
+            data-table="玩美同事"
+            data-side="groom"
+          >
+            <span class="t-name">玩美同事</span>
+            <span class="t-guests"></span>
+          </div>
+          <div
+            class="v-table groom-table"
+            data-table="大學同學"
+            data-side="groom"
+          >
+            <span class="t-name">大學同學</span>
+            <span class="t-guests"></span>
+          </div>
+          <div
+            class="v-table bride-table"
+            data-table="保吉同事"
+            data-side="bride"
+          >
+            <span class="t-name">保吉同事</span>
+            <span class="t-guests"></span>
+          </div>
+          <!-- Row 4 -->
+          <div
+            class="v-table groom-table"
+            data-table="美積同事"
+            data-side="groom"
+          >
+            <span class="t-name">美積同事</span>
+            <span class="t-guests"></span>
+          </div>
+          <div
+            class="v-table groom-table"
+            data-table="學碩朋友"
+            data-side="groom"
+          >
+            <span class="t-name">學碩朋友</span>
+            <span class="t-guests"></span>
+          </div>
+          <div
+            class="v-table bride-table"
+            data-table="朋友 1"
+            data-side="bride"
+          >
+            <span class="t-name">女方朋友1</span>
+            <span class="t-guests"></span>
+          </div>
+          <!-- Row 5 -->
+          <div
+            class="v-table groom-table"
+            data-table="國中同學"
+            data-side="groom"
+          >
+            <span class="t-name">國中同學</span>
+            <span class="t-guests"></span>
+          </div>
+          <div></div>
+          <div
+            class="v-table bride-table"
+            data-table="朋友 2"
+            data-side="bride"
+          >
+            <span class="t-name">女方朋友2</span>
+            <span class="t-guests"></span>
+          </div>
+        </div>
+
+        <div class="venue-entrance">
+          <div class="entrance-arrow">&#x25B2;</div>
+          <svg
+            class="entrance-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <circle cx="12" cy="5" r="3" />
+            <path d="M12 8v8M8 12h8M9 20l3-4 3 4" />
+          </svg>
+          <div class="entrance-label">
+            <span class="lang-zh">入口</span
+            ><span class="lang-en">Entrance</span>
+          </div>
+        </div>
+        <div class="venue-legend">
+          <span
+            ><i class="legend-dot groom"></i><span class="lang-zh">男方</span
+            ><span class="lang-en">Groom</span></span
+          >
+          <span
+            ><i class="legend-dot bride"></i><span class="lang-zh">女方</span
+            ><span class="lang-en">Bride</span></span
+          >
+          <span
+            ><i class="legend-dot main"></i><span class="lang-zh">主桌</span
+            ><span class="lang-en">Main</span></span
+          >
+        </div>
+      </div>
+      <p class="venue-note">
+        <span class="lang-zh">此為場地示意圖，實際依現場擺放為主</span>
+        <span class="lang-en"
+          >Floor plan is approximate. Actual layout may vary.</span
+        >
+      </p>
+    </section>
+
+    <!-- Mobile Popup -->
+    <div class="table-popup-overlay" id="popupOverlay">
+      <div class="table-popup">
+        <div class="popup-header" id="popupHeader">
+          <div class="popup-table-name" id="popupTableName"></div>
+          <div class="popup-count" id="popupCount"></div>
+        </div>
+        <ul class="popup-guests" id="popupGuests"></ul>
+        <button class="popup-close" id="popupClose">
+          <span class="lang-zh">關閉</span>
+          <span class="lang-en">Close</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="seat-footer">
+      <a href="index.html">
+        <span class="lang-zh">&larr; 返回婚禮網站</span>
+        <span class="lang-en">&larr; Back to Wedding Site</span>
+      </a>
+    </footer>
+
+    <script>
+      (function () {
+        let seatingData = null;
+        let allGuests = [];
+        let currentMatch = null; // track searched guest
+
+        const searchInput = document.getElementById("guestSearch");
+        const clearBtn = document.getElementById("clearBtn");
+        const suggestionsEl = document.getElementById("suggestions");
+        const resultCard = document.getElementById("resultCard");
+        const noResult = document.getElementById("noResult");
+        const resultName = document.getElementById("resultName");
+        const resultTableName = document.getElementById("resultTableName");
+        const resultSeats = document.getElementById("resultSeats");
+        const resultCompanions = document.getElementById("resultCompanions");
+        const popupOverlay = document.getElementById("popupOverlay");
+        const popupHeader = document.getElementById("popupHeader");
+        const popupTableName = document.getElementById("popupTableName");
+        const popupCount = document.getElementById("popupCount");
+        const popupGuests = document.getElementById("popupGuests");
+        const popupClose = document.getElementById("popupClose");
+        const langToggle = document.getElementById("langToggle");
+        const isZh = () => document.documentElement.lang === "zh-TW";
+
+        fetch("assets/seat/seating.json")
+          .then((r) => r.json())
+          .then((data) => {
+            seatingData = data;
+            buildGuestIndex();
+            fillCircleNames();
+          });
+
+        function buildGuestIndex() {
+          allGuests = [];
+          ["groom", "bride"].forEach((side) => {
+            Object.entries(seatingData[side]).forEach(([table, guests]) => {
+              guests.forEach((g) => {
+                allGuests.push({
+                  name: g.name,
+                  table: table,
+                  side: side,
+                  seats: g.seats,
+                  companions: g.companions || [],
+                });
+              });
+            });
+          });
+        }
+
+        // Fill guest names inside each circle
+        function fillCircleNames(highlightName) {
+          document.querySelectorAll(".v-table[data-table]").forEach((el) => {
+            const tableName = el.dataset.table;
+            const side = el.dataset.side;
+            const guests =
+              (seatingData[side] && seatingData[side][tableName]) || [];
+            const namesEl = el.querySelector(".t-guests");
+
+            const namesList = guests.map((g) => {
+              const seatsMark = g.seats > 1 ? `×${g.seats}` : "";
+              if (highlightName && g.name === highlightName) {
+                return (
+                  '<span class="guest-match">' +
+                  escapeHtml(g.name) +
+                  seatsMark +
+                  "</span>"
+                );
+              }
+              return escapeHtml(g.name) + seatsMark;
+            });
+
+            namesEl.innerHTML = namesList.join("、");
+          });
+        }
+
+        // Popup
+        function showPopup(tableName, side, highlightName) {
+          const guests =
+            (seatingData[side] && seatingData[side][tableName]) || [];
+          const totalSeats = guests.reduce((s, g) => s + g.seats, 0);
+          const zh = isZh();
+
+          popupTableName.textContent = tableName;
+          popupCount.textContent = totalSeats + (zh ? " 位" : " seats");
+
+          popupHeader.className = "popup-header";
+          if (side === "groom") popupHeader.classList.add("groom-popup");
+          else if (tableName === "主桌")
+            popupHeader.classList.add("main-popup");
+          else popupHeader.classList.add("bride-popup");
+
+          popupGuests.innerHTML = guests
+            .map((g) => {
+              const isMatch = highlightName && g.name === highlightName;
+              let extras =
+                g.seats > 1
+                  ? `<span class="seats-badge">&times;${g.seats}</span>`
+                  : "";
+              let compTags = (g.companions || [])
+                .map(
+                  (c) => `<span class="companion-tag">${escapeHtml(c)}</span>`,
+                )
+                .join("");
+              return `<li class="${isMatch ? "popup-match" : ""}">
+                    <span>${escapeHtml(g.name)}</span>${compTags}${extras}
+                </li>`;
+            })
+            .join("");
+
+          popupOverlay.classList.add("open");
+        }
+
+        function closePopup() {
+          popupOverlay.classList.remove("open");
+        }
+
+        popupClose.addEventListener("click", closePopup);
+        popupOverlay.addEventListener("click", (e) => {
+          if (e.target === popupOverlay) closePopup();
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") closePopup();
+        });
+
+        // Table click -> popup
+        document.querySelectorAll(".v-table[data-table]").forEach((el) => {
+          el.addEventListener("click", () => {
+            const tableName = el.dataset.table;
+            const side = el.dataset.side;
+            showPopup(tableName, side, currentMatch);
+          });
+        });
+
+        // Search
+        searchInput.addEventListener("input", function () {
+          const q = this.value.trim();
+          clearBtn.classList.toggle("visible", q.length > 0);
+          noResult.classList.remove("visible");
+          resultCard.classList.remove("visible");
+          currentMatch = null;
+          clearHighlights();
+          fillCircleNames(null);
+
+          if (q.length === 0) {
+            suggestionsEl.classList.remove("visible");
+            return;
+          }
+
+          const matches = allGuests.filter((g) => g.name.includes(q));
+          if (matches.length === 0) {
+            suggestionsEl.classList.remove("visible");
+            noResult.classList.add("visible");
+            return;
+          }
+          renderSuggestions(matches, q);
+        });
+
+        searchInput.addEventListener("keydown", function (e) {
+          const items = suggestionsEl.querySelectorAll(".suggestion-item");
+          const active = suggestionsEl.querySelector(".suggestion-item.active");
+          let idx = Array.from(items).indexOf(active);
+
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            idx = idx < items.length - 1 ? idx + 1 : 0;
+            items.forEach((i) => i.classList.remove("active"));
+            items[idx]?.classList.add("active");
+            items[idx]?.scrollIntoView({ block: "nearest" });
+          } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            idx = idx > 0 ? idx - 1 : items.length - 1;
+            items.forEach((i) => i.classList.remove("active"));
+            items[idx]?.classList.add("active");
+            items[idx]?.scrollIntoView({ block: "nearest" });
+          } else if (e.key === "Enter") {
+            e.preventDefault();
+            const sel = active || items[0];
+            if (sel) sel.click();
+          }
+        });
+
+        clearBtn.addEventListener("click", function () {
+          searchInput.value = "";
+          clearBtn.classList.remove("visible");
+          suggestionsEl.classList.remove("visible");
+          resultCard.classList.remove("visible");
+          noResult.classList.remove("visible");
+          currentMatch = null;
+          clearHighlights();
+          fillCircleNames(null);
+          searchInput.focus();
+        });
+
+        function renderSuggestions(matches, query) {
+          suggestionsEl.innerHTML = matches
+            .map((g) => {
+              const highlighted = g.name.replace(
+                new RegExp(`(${escapeRegex(query)})`, "g"),
+                "<mark>$1</mark>",
+              );
+              return `<div class="suggestion-item" data-name="${escapeHtml(g.name)}">
+                    <span class="s-name">${highlighted}</span>
+                    <span class="s-table">${escapeHtml(g.table)}</span>
+                </div>`;
+            })
+            .join("");
+
+          suggestionsEl.querySelectorAll(".suggestion-item").forEach((item) => {
+            item.addEventListener("click", () =>
+              selectGuest(item.dataset.name),
+            );
+          });
+          suggestionsEl.classList.add("visible");
+        }
+
+        function selectGuest(name) {
+          const guest = allGuests.find((g) => g.name === name);
+          if (!guest) return;
+
+          searchInput.value = guest.name;
+          suggestionsEl.classList.remove("visible");
+          noResult.classList.remove("visible");
+          clearBtn.classList.add("visible");
+          currentMatch = guest.name;
+
+          resultName.textContent = guest.name;
+          resultTableName.textContent = guest.table;
+
+          const zh = isZh();
+          resultSeats.style.display = guest.seats > 1 ? "" : "none";
+          resultSeats.textContent =
+            guest.seats > 1
+              ? zh
+                ? `共 ${guest.seats} 個座位`
+                : `${guest.seats} seats reserved`
+              : "";
+          resultCompanions.style.display =
+            guest.companions.length > 0 ? "" : "none";
+          resultCompanions.textContent =
+            guest.companions.length > 0
+              ? zh
+                ? `同行：${guest.companions.join("、")}`
+                : `With: ${guest.companions.join(", ")}`
+              : "";
+
+          resultCard.classList.add("visible");
+
+          clearHighlights();
+          fillCircleNames(guest.name);
+          highlightTable(guest.table);
+        }
+
+        function highlightTable(tableName) {
+          document.querySelectorAll(".v-table[data-table]").forEach((el) => {
+            if (el.dataset.table === tableName) {
+              el.classList.add("highlight");
+              setTimeout(() => {
+                el.scrollIntoView({ behavior: "smooth", block: "center" });
+              }, 100);
+            }
+          });
+        }
+
+        function clearHighlights() {
+          document
+            .querySelectorAll(".v-table.highlight")
+            .forEach((c) => c.classList.remove("highlight"));
+        }
+
+        // Outside click closes suggestions
+        document.addEventListener("click", (e) => {
+          if (!e.target.closest(".search-box"))
+            suggestionsEl.classList.remove("visible");
+        });
+
+        // Language toggle
+        langToggle.addEventListener("click", () => {
+          const html = document.documentElement;
+          html.lang = html.lang === "zh-TW" ? "en" : "zh-TW";
+          searchInput.placeholder =
+            html.lang === "zh-TW" ? "請輸入姓名..." : "Enter your name...";
+        });
+
+        function escapeHtml(str) {
+          const d = document.createElement("div");
+          d.textContent = str;
+          return d.innerHTML;
+        }
+        function escapeRegex(str) {
+          return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        }
+      })();
+    </script>
+  </body>
+</html>
