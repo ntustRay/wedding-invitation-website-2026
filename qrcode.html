@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding QR Codes</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #faf7f2;
+        font-family: "Noto Serif TC", serif;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Subtle floral watermark pattern */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 120px 120px at 10% 20%,
+            rgba(200, 170, 130, 0.06) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            ellipse 100px 100px at 90% 80%,
+            rgba(200, 170, 130, 0.06) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            ellipse 80px 80px at 50% 10%,
+            rgba(200, 170, 130, 0.04) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            ellipse 90px 90px at 30% 90%,
+            rgba(200, 170, 130, 0.05) 0%,
+            transparent 70%
+          );
+        pointer-events: none;
+      }
+
+      .container {
+        display: flex;
+        gap: 80px;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 60px;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100vh;
+      }
+
+      /* Divider line */
+      .divider {
+        width: 2px;
+        height: 60%;
+        background: linear-gradient(
+          to bottom,
+          transparent 0%,
+          #c8aa82 20%,
+          #c8aa82 80%,
+          transparent 100%
+        );
+        flex-shrink: 0;
+      }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 36px;
+        padding: 16px;
+        flex: 1;
+        max-width: 450px;
+      }
+
+      /* Decorative ornament above title */
+      .ornament {
+        width: 80px;
+        height: 2px;
+        background: #c8aa82;
+        position: relative;
+      }
+      .ornament::before {
+        content: "\2766";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: #faf7f2;
+        padding: 0 12px;
+        color: #c8aa82;
+        font-size: 22px;
+      }
+
+      .title {
+        font-size: 42px;
+        font-weight: 600;
+        color: #3d3225;
+        letter-spacing: 8px;
+        text-align: center;
+      }
+
+      .subtitle {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 18px;
+        font-style: italic;
+        color: #a89478;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-top: -16px;
+      }
+
+      .qr-frame {
+        position: relative;
+        padding: 16px;
+        background: #fff;
+        border-radius: 4px;
+        box-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.04),
+          0 4px 12px rgba(0, 0, 0, 0.03);
+      }
+
+      /* Corner accents */
+      .qr-frame::before,
+      .qr-frame::after {
+        content: "";
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        border-color: #c8aa82;
+        border-style: solid;
+      }
+      .qr-frame::before {
+        top: -4px;
+        left: -4px;
+        border-width: 1.5px 0 0 1.5px;
+      }
+      .qr-frame::after {
+        bottom: -4px;
+        right: -4px;
+        border-width: 0 1.5px 1.5px 0;
+      }
+
+      .qr-frame img {
+        display: block;
+        width: 320px;
+        height: 320px;
+        image-rendering: pixelated;
+      }
+
+      .hint {
+        font-size: 18px;
+        color: #a89478;
+        letter-spacing: 2px;
+        margin-top: -8px;
+      }
+
+      /* Responsive */
+      @media (max-width: 640px) {
+        .container {
+          flex-direction: column;
+          gap: 40px;
+          padding: 36px 24px;
+        }
+        .divider {
+          width: 60%;
+          height: 1px;
+          align-self: center;
+          background: linear-gradient(
+            to right,
+            transparent 0%,
+            #c8aa82 20%,
+            #c8aa82 80%,
+            transparent 100%
+          );
+        }
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+        .ornament::before {
+          background: #fff;
+        }
+        .qr-frame {
+          box-shadow: none;
+          border: 1px solid #eee;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Left: Seating Chart -->
+      <div class="card">
+        <div class="ornament"></div>
+        <h2 class="title">座位表</h2>
+        <p class="subtitle">Seating Chart</p>
+        <div class="qr-frame">
+          <img src="assets/seats.png" alt="座位表 QR Code" />
+        </div>
+        <p class="hint">掃描查看座位安排</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Right: Photo Upload -->
+      <div class="card">
+        <div class="ornament"></div>
+        <h2 class="title">婚禮照片上傳</h2>
+        <p class="subtitle">Photo Upload</p>
+        <div class="qr-frame">
+          <img src="assets/upload.png" alt="婚禮照片上傳 QR Code" />
+        </div>
+        <p class="hint">掃描上傳精彩瞬間</p>
+      </div>
+    </div>
+  </body>
+</html>
